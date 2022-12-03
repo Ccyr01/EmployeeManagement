@@ -9,6 +9,7 @@ public class Employee {
 	private int socialSecurity;
 	private int dateOfBirth;
 	private double hourlyWage;
+	private Request request = null;
 	
 	public Employee() {
 		firstName = "";
@@ -68,6 +69,31 @@ public class Employee {
 	}
 	public void setDateOfBirth(int dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
+	}
+	
+	public Request getRequest() {
+		return request;
+	}
+
+	public void setRequest(Request request){
+		this.request = request;
+	}
+
+	public void loadRequest() {
+		for(Request request : RequestList.pendingList){
+			if(this.id == request.getEmployeeId())
+				this.request = request;
+		}
+
+		for(Request request : RequestList.acceptedList){
+			if(this.id == request.getEmployeeId())
+				this.request = request;
+		}
+
+		for(Request request : RequestList.deniedList){
+			if(this.id == request.getEmployeeId())
+				this.request = request;
+		}
 	}
 //	public static Employee matchEmpToId(String userId) {
 //		Roster.viewEmployeesName();

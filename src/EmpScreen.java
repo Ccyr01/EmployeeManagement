@@ -20,7 +20,7 @@ public class EmpScreen implements ActionListener{
 	Employee employee = null;
     JFrame frame = new JFrame();
     JButton myButton = new JButton("New Window");
-    JLabel lblNewLabel = new JLabel("Employee");
+    JLabel lblNewLabel = new JLabel();
     JLabel clockInLbl = new JLabel("Clock-in:");
     JButton btnClockIn = new JButton("Clock-in");
     JLabel clockOutLbl = new JLabel("Clock-out:");
@@ -29,6 +29,8 @@ public class EmpScreen implements ActionListener{
     JButton btnSchedule = new JButton("Schedule");
     JLabel timeOffLbl = new JLabel("Request Time Off:");
     JButton btnRequestTimeOff = new JButton("Time Off");
+	JLabel messageLbl = new JLabel("Messages:");
+    JButton btnMessage = new JButton("Message");
     JButton FAQ = new JButton("FAQ");
     private final JPanel panel = new JPanel();
     private final JLabel lblQuestions = new JLabel("Questions:");
@@ -37,6 +39,8 @@ public class EmpScreen implements ActionListener{
     public EmpScreen(Employee employeePassed){
         this.employee = employeePassed;
     	clockInLbl.setFont(new Font("Tahoma", Font.PLAIN, 14));
+    	
+    	lblNewLabel = new JLabel("Employee - " + employeePassed.getFirstName() + " " + employeePassed.getLastName());
 
         //sets clockin label
         clockInLbl.setBounds(46, 114, 90, 13);
@@ -49,6 +53,10 @@ public class EmpScreen implements ActionListener{
 
         //sets clockout label
         clockOutLbl.setBounds(46, 197, 90, 13);
+        
+        btnMessage.setBounds(203, 413, 122, 40);
+        btnMessage.setFocusable(false);
+        btnMessage.addActionListener(this);
 
         //sets clockout button
         btnClockOut.setBounds(203, 185, 122, 40);
@@ -75,14 +83,14 @@ public class EmpScreen implements ActionListener{
 
         // FAQ
         //sets timeoff button
-        FAQ.setBounds(203, 417, 122, 40);
+        FAQ.setBounds(203, 479, 122, 40);
         FAQ.setFocusable(false);
         FAQ.addActionListener(this);
 
         FAQ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource()== FAQ) {
-//                    FAQ faq = new FAQ();
+                   FAQ faq = new FAQ(employee);
 
                 }
             }
@@ -99,6 +107,7 @@ public class EmpScreen implements ActionListener{
         frame.getContentPane().add(btnClockOut);
         frame.getContentPane().add(btnSchedule);
         frame.getContentPane().add(btnRequestTimeOff);
+				frame.getContentPane().add(btnMessage);
         frame.getContentPane().setBackground(SystemColor.activeCaption);
         frame.getContentPane().setFont(new Font("Tahoma", Font.PLAIN, 14));
 
@@ -109,14 +118,21 @@ public class EmpScreen implements ActionListener{
         panel.setBackground(SystemColor.inactiveCaption);
         panel.setBounds(46, 11, 590, 68);
         
+        
+        
         frame.getContentPane().add(panel);
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         panel.add(lblNewLabel);
         lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 28));
         lblQuestions.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblQuestions.setBounds(46, 429, 109, 13);
+        lblQuestions.setBounds(52, 491, 109, 13);
         
         frame.getContentPane().add(lblQuestions);
+        
+        JLabel lblMessages = new JLabel("Messages:");
+        lblMessages.setFont(new Font("Tahoma", Font.PLAIN, 14));
+        lblMessages.setBounds(46, 426, 109, 13);
+        frame.getContentPane().add(lblMessages);
         frame.setVisible(true);
 
     }
@@ -152,7 +168,7 @@ public class EmpScreen implements ActionListener{
 	 		}
         } else if (e.getSource() == btnClockOut) { //opens clockout screen
             frame.dispose();
-            ClockOutScreen clockOut = new ClockOutScreen(employee);
+            //ClockOutScreen clockOut = new ClockOutScreen(employee);
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");  
        	 	LocalDateTime now = LocalDateTime.now();
             String timeOut = dtf.format(now);
@@ -169,6 +185,7 @@ public class EmpScreen implements ActionListener{
 //Call calculateTimeWorked
 	 			String timeWorked = calculateTimeWorked(timeStart,timeOut);
 	 			timeWriter.write(timeWorked);
+	 			ClockOutScreen clockOut = new ClockOutScreen(employee,timeWorked);
 	 			timeWriter.flush();
 	 			timeWriter.close();
 	 		}
@@ -184,6 +201,10 @@ public class EmpScreen implements ActionListener{
             frame.dispose();
             TimeOffScreen timeOffScreen = new TimeOffScreen(employee);
         }
+        else if (e.getSource() == btnMessage){
+			frame.dispose();
+			MessageEmployeeScreen messageEmployeeScreen = new MessageEmployeeScreen(employee);
+	}
 
     }
     //pre:String for time in and time out
@@ -220,12 +241,4 @@ public class EmpScreen implements ActionListener{
     	
     	
     }
-    
-
-    
-
-    //dummy main
- /*public static void main(String[] args){
-  new EmpScreen();
-}*/
 }

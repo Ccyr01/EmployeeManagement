@@ -138,7 +138,7 @@ public class Login extends JFrame {
 
         });
         login.setFont(new Font("Courier New", Font.BOLD | Font.ITALIC, 19));
-        login.setBounds(251, 284, 140, 31);
+        login.setBounds(251, 305, 140, 31);
         contentPane.add(login);
 
         Button Clear = new Button("Clear");
@@ -151,32 +151,8 @@ public class Login extends JFrame {
             }
         });
         Clear.setFont(new Font("Courier New", Font.BOLD | Font.ITALIC, 19));
-        Clear.setBounds(251, 343, 140, 31);
+        Clear.setBounds(251, 384, 140, 31);
         contentPane.add(Clear);
-
-        Button login_1 = new Button("Reset Password");
-        login_1.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                PasswordAndReset pass = new PasswordAndReset();
-                String userId= UsernameInput.getText();
-                String userPassword = String.valueOf(passwordInput.getPassword());
-                ResetMenu rest = new ResetMenu();
-                rest.Rest();
-            }
-        });
-        login_1.setFont(new Font("Courier New", Font.BOLD | Font.ITALIC, 19));
-        login_1.setBounds(232, 408, 190, 31);
-        contentPane.add(login_1);
-
-
-
-
-        //this would add an image wait for later
-        // for other users change path of file
-        JLabel lblNewLabel = new JLabel("");
-        lblNewLabel.setIcon(new ImageIcon("download(1).png"));
-        lblNewLabel.setBounds(176, 120, 282, 203);
-        contentPane.add(lblNewLabel);
 
 
 
@@ -197,6 +173,17 @@ public class Login extends JFrame {
         lblNewLabel_1_1.setFont(new Font("Courier New", Font.BOLD, 55));
         panel.add(lblNewLabel_1_1);
 
+        JLabel Username_1 = new JLabel("*If employee enter userID");
+        Username_1.setForeground(Color.BLACK);
+        Username_1.setFont(new Font("Courier New", Font.PLAIN, 12));
+        Username_1.setBounds(176, 165, 265, 31);
+        contentPane.add(Username_1);
+        
+        JLabel passwordComment = new JLabel("*If employee enter social security #");
+        passwordComment.setForeground(Color.BLACK);
+        passwordComment.setFont(new Font("Courier New", Font.PLAIN, 12));
+        passwordComment.setBounds(176, 240, 265, 31);
+        contentPane.add(passwordComment);
 
 
 

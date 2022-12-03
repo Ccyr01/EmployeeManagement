@@ -3,32 +3,26 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class FAQ implements ActionListener {
-
-    Employee employee = null;
+public class ManagerFAQ implements ActionListener {
     JFrame frame = new JFrame();
-    JButton QBtn = new JButton("Page 2");
     JButton returnButton = new JButton("Return");
     JLabel label = new JLabel("Click on any button to view the answer.");
     JButton ansBtn = new JButton("Ans");
     JButton ans2btn2 = new JButton("Ans");
     JButton ans3btn3 = new JButton("Ans");
     JButton ans4btn4 = new JButton("Ans");
-    JLabel label2 = new JLabel("How do I clock in?");
-    JLabel label3 = new JLabel("How do I clock out?");
-    JLabel label4 = new JLabel("Where can I email my manager?");
-    JLabel label5 = new JLabel("How is my pay Calculated?");
-    FAQ(Employee employee) {
+    JLabel label2 = new JLabel("What do I do if I added the wrong employee information?");
+    JLabel label3 = new JLabel("What do I do if I removed the wrong employee?");
+    JLabel label4 = new JLabel("Is there a way to re-add an employee?");
+    JLabel label5 = new JLabel("Can I modify a current employees wage?");
 
-        QBtn.setBounds(575, 500, 100, 40);
-        QBtn.setFocusable(false);
-        QBtn.addActionListener(this);
+    ManagerFAQ() {
 
         // sentence bounds
         label.setBounds(0, 0, 500, 50);
         label.setFont(new Font(null, Font.BOLD, 25));
         //
-        label2.setBounds(0, 0, 500, 135);
+        label2.setBounds(0, 0, 700, 135);
         label2.setFont(new Font(null, Font.ITALIC, 20));
         //
         label3.setBounds(0, 0, 500, 400);
@@ -58,7 +52,7 @@ public class FAQ implements ActionListener {
         ans4btn4.addActionListener(this);
 
         // return button listen
-        returnButton.setBounds(450, 500, 100, 40);
+        returnButton.setBounds(300, 500, 200, 40);
         returnButton.addActionListener(this);
 
         // add buttons to screen
@@ -75,7 +69,6 @@ public class FAQ implements ActionListener {
         frame.add(label5);
 
         // back buttons
-        frame.add(QBtn);
         frame.getContentPane().add(returnButton);
 
         ImageIcon image = new ImageIcon("logo.png");
@@ -85,7 +78,7 @@ public class FAQ implements ActionListener {
         label.setFont(new Font(null, Font.BOLD, 25));
 
         frame.add(label);
-        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(750,600);
         frame.setLayout(null);
         frame.setVisible(true);
@@ -94,24 +87,26 @@ public class FAQ implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == QBtn) {
+
+        if(e.getSource()==returnButton) {
+            frame.dispose();
+            ManagerWindow window = new ManagerWindow();
+        }
+        if (e.getSource() == ansBtn) {
             frame.setVisible(false);
-            QuestionPg window = new QuestionPg(employee);
-        } else if(e.getSource()==returnButton) {
-        frame.dispose();
-        EmpScreen screen = new EmpScreen(employee);
-        }else if (e.getSource() == ansBtn) {
+            ManagerAnswers window = new ManagerAnswers();
+        }
+        if (e.getSource() == ans2btn2) {
             frame.setVisible(false);
-            answers window = new answers(employee);
-        }else if (e.getSource() == ans2btn2) {
+            ManagerAnswers window = new ManagerAnswers();
+        }
+        if (e.getSource() == ans3btn3) {
             frame.setVisible(false);
-            answers window = new answers(employee);
-        }else if (e.getSource() == ans3btn3) {
+            ManagerAnswers window = new ManagerAnswers();
+        }
+        if (e.getSource() == ans4btn4) {
             frame.setVisible(false);
-            answers window = new answers(employee);
-        }else if (e.getSource() == ans4btn4) {
-            frame.setVisible(false);
-            answers window = new answers(employee);
+            ManagerAnswers window = new ManagerAnswers();
         }
 
     }

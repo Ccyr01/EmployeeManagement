@@ -18,6 +18,7 @@ public class PasswordAndReset {
         info.put("christian","user");
         info.put("andres","user");
         info.put("zar","user");
+        info.put("bryan","user");
         manager.put("manager","user");
     }
 

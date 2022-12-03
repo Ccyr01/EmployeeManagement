@@ -17,6 +17,7 @@ public class EditScheduleScreen implements ActionListener{
 
     public EditScheduleScreen(){
         returnButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+        
 
         //sets return button
         returnButton.setBounds(291, 543, 166, 41);
@@ -101,7 +102,7 @@ public class EditScheduleScreen implements ActionListener{
         	addToSchedule.main(null);
         	}
         });
-        btnAddSunday.setBounds(62, 212, 85, 21);
+        btnAddSunday.setBounds(62, 210, 140, 23);
         frame.getContentPane().add(btnAddSunday);
         frame.setVisible(true);
  
@@ -113,7 +114,7 @@ public class EditScheduleScreen implements ActionListener{
 		return null;
 	}
 
-	public EditScheduleScreen(JTable table_1) {
+	public void EditScheduleScreen(JTable table_1) {
 		this.table_1 = table_1;
 	}
 
@@ -122,7 +123,8 @@ public class EditScheduleScreen implements ActionListener{
 
         if(e.getSource()==returnButton) {
             frame.dispose();
-//            EmpScreen screen = new EmpScreen(employee);
+            ManagerWindow managerWindow = new ManagerWindow();
+            managerWindow.main(null);
         }
 
     }

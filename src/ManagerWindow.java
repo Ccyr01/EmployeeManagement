@@ -130,9 +130,16 @@ public class ManagerWindow
         btnEditSchedule.setBackground(SystemColor.inactiveCaption);
         
         JButton btnMessages = new JButton("Check Messages");
-        btnMessages.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        panel_1.add(btnMessages);
-        btnMessages.setBackground(SystemColor.inactiveCaption);
+		btnMessages.addActionListener(new ActionListener() {
+		public void actionPerformed(ActionEvent e)
+		{
+			frame.dispose();
+					MessageManagerScreen mes = new MessageManagerScreen();
+		}
+		});
+		btnMessages.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(btnMessages);
+		btnMessages.setBackground(SystemColor.inactiveCaption);
                                         
         JButton btnFAQ = new JButton("FAQ");
         btnFAQ.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -156,8 +163,7 @@ public class ManagerWindow
         btnFAQ.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 if(e.getSource()== btnFAQ) {
-//                    FAQ faq = new FAQ();
-
+                   ManagerFAQ FAQ = new ManagerFAQ();
                 }
             }
         });

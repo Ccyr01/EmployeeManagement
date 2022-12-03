@@ -84,7 +84,7 @@ public class AddToScheduleWindow {
 			public void actionPerformed(ActionEvent e) 
 			{
 				frame.dispose();
-				EditScheduleScreen schedule = new EditScheduleScreen(table_1);
+				//EditScheduleScreen schedule = new EditScheduleScreen(table_1);
 //                schedule.main(null);
 			}
 		});
@@ -103,7 +103,7 @@ public class AddToScheduleWindow {
 		
 		
 		String [] daysOfWeek = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"};
-		dayCombo = new JComboBox<>(daysOfWeek);
+		dayCombo = new JComboBox<>(new DefaultComboBoxModel<>(daysOfWeek));
 		dayCombo.setBounds(129, 136, 168, 30);	
 		frame.getContentPane().add(dayCombo);
 		

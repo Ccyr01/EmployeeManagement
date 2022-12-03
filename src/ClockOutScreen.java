@@ -16,11 +16,13 @@ public class ClockOutScreen implements ActionListener{
     JButton returnButton = new JButton("Return");
     private final JPanel panel = new JPanel();
     private final JLabel lblClockedoutAt = new JLabel("Clocked-out time : " + getCurrentTime());
-    private final JLabel lblYouWorkedFor = new JLabel("You worked for a total time of : ...");
+    JLabel lblYouWorkedFor = new JLabel();
 
-    public ClockOutScreen(Employee employee){
+    public ClockOutScreen(Employee employee, String timeWorked){
     	this.employee = employee;
         successLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        
+        lblYouWorkedFor = new JLabel(timeWorked);
 
         //sets success label
         successLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -49,8 +51,8 @@ public class ClockOutScreen implements ActionListener{
         
         frame.getContentPane().add(lblClockedoutAt);
         lblYouWorkedFor.setHorizontalAlignment(SwingConstants.CENTER);
-        lblYouWorkedFor.setFont(new Font("Tahoma", Font.PLAIN, 25));
-        lblYouWorkedFor.setBounds(37, 288, 563, 37);
+        lblYouWorkedFor.setFont(new Font("Tahoma", Font.PLAIN, 23));
+        lblYouWorkedFor.setBounds(10, 288, 623, 37);
         
         frame.getContentPane().add(lblYouWorkedFor);
         frame.setVisible(true);
